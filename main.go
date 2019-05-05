@@ -5,15 +5,16 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 // Quote is a representation of the json quote
 type Quote struct {
-	Category string `json:"category"`
-	IconURL  string `json:"icon_url"`
-	ID       string `json:"id"`
-	URL      string `json:"url"`
-	Value    string `json:"value"`
+	Categories []string `json:"category"`
+	IconURL    string   `json:"icon_url"`
+	ID         string   `json:"id"`
+	URL        string   `json:"url"`
+	Value      string   `json:"value"`
 }
 
 func main() {
@@ -30,6 +31,7 @@ func main() {
 
 	q, err := getQuote([]byte(body))
 	fmt.Println(q.Value)
+	fmt.Println("Categories: " + strings.Join(q.Categories, ","))
 }
 
 func getQuote(body []byte) (*Quote, error) {
