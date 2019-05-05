@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"strings"
 )
 
 // Quote is a representation of the json quote
@@ -31,7 +30,6 @@ func main() {
 
 	q, err := getQuote([]byte(body))
 	fmt.Println(q.Value)
-	fmt.Println("Categories: " + strings.Join(q.Categories, ","))
 }
 
 func getQuote(body []byte) (*Quote, error) {
